@@ -16,4 +16,7 @@ const createUser = (generateId, hash) => async ({
   credentials: hash.generate(credentials),
 })
 
-module.exports = createUser(uuid, passwordHash)
+module.exports = {
+  createUser,
+  default: createUser(uuid, passwordHash),
+}

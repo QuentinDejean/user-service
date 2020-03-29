@@ -1,5 +1,5 @@
 const datasource = require('../../datasources/user')
-const factory = require('./factory')
+const { default: factory } = require('./factory/factory')
 const httpResponse = require('../../libs/httpResponse/httpResponse')
 
 const create = (userDataSource, userFactory, response) => async (event) => {
