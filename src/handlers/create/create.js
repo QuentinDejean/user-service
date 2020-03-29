@@ -1,6 +1,6 @@
 const datasource = require('../../datasources/user')
 const factory = require('./factory')
-const httpResponse = require('../../libs/httpResponse')
+const httpResponse = require('../../libs/httpResponse/httpResponse')
 
 const create = (userDataSource, userFactory, response) => async (event) => {
   const payload = JSON.parse(event.body)
