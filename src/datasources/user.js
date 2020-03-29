@@ -14,7 +14,6 @@ const user = (environment) => {
           TableName: environment.userTable,
           Item: data,
         }
-        console.log(dynamoDb.put)
 
         await dynamoDb.put(userInfo).promise()
       } catch (err) {

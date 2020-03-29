@@ -11,7 +11,7 @@ describe('GIVEN the create handler', () => {
 
   describe('WHEN the method is fired', () => {
     it('SHOULD run all expected methods and return a successful payload', async () => {
-      const userDatasource = datasource()
+      const userDatasource = datasource(jest.fn().mockResolvedValue())
       const create = createUser(userDatasource, factory, httpResponse)
 
       const createdUser = {
@@ -26,6 +26,20 @@ describe('GIVEN the create handler', () => {
       expect(httpResponse.success).toHaveBeenCalledWith({
         message: 'User created sucessfully',
         userId,
+      })
+    })
+
+    describe('AND an unexpected error happens', () => {
+      it('SHOULD return an error payload', async () => {
+        const userDatasource = datasource(
+          jest
+            .fn()
+            .mockRejectedValue({ code: 500, message: 'An error occured' })
+        )
+        const create = createUser(userDatasource, factory, httpResponse)
+
+        await create(event)
+        expect(httpResponse.error).toHaveBeenCalled()
       })
     })
   })

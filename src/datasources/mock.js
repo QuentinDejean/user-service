@@ -1,5 +1,5 @@
 const user = (fn) => ({
-  create: fn ? fn : jest.fn().mockResolvedValue(),
+  create: fn,
 })
 
 module.exports = user
