@@ -18,4 +18,5 @@ const create = (userDataSource, userFactory, response) => async (event) => {
   }
 }
 
+module.exports = create
 module.exports.handler = create(datasource, factory, httpResponse)
