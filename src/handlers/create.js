@@ -2,12 +2,12 @@ const create = (event, context, callback) => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Go Serverless v1.0! Your function executed successfully!",
-      input: event
-    })
-  };
+      message: 'Go Serverless v1.0! Your function executed successfully!',
+      input: event,
+    }),
+  }
 
-  callback(null, response);
-};
+  callback(null, response)
+}
 
-module.exports.handler = create;
+module.exports.handler = create
