@@ -5,7 +5,7 @@ AWS.config.setPromisesDependency(require('bluebird'))
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
-const user = (environment) => ({
+const user = (environment, dynamo) => ({
   create: async (data) => {
     try {
       console.log(`Saving user ${data.firstName} ${data.lastName}`)
@@ -14,18 +14,23 @@ const user = (environment) => ({
         Item: data,
       }
 
-      await dynamoDb
-        .put(userInfo)
-        .promise()
-        .then(() => data)
-    } catch (error) {
+      await dynamo.put(userInfo)
+    } catch (err) {
       console.log(
         `An error occured while saving user ${data.firstName}  ${data.lastName}`,
-        error
+        err
       )
-      throw Error('An error occured')
+
+      const error = new Error('An error occured')
+      error.code = 500
+      error.message = 'An unknown error occured'
+
+      throw error
     }
   },
 })
 
-module.exports = user(env)
+module.exports = {
+  user,
+  default: user(env, dynamoDb),
+}

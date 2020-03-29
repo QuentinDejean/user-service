@@ -1,4 +1,4 @@
-const datasource = require('../../datasources/user')
+const { default: datasource } = require('../../datasources/user')
 const { default: factory } = require('./factory/factory')
 const httpResponse = require('../../libs/httpResponse/httpResponse')
 
