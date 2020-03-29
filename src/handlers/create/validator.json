@@ -8,20 +8,16 @@
       "format": "email"
     },
     "firstName": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     },
     "lastName": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     },
     "username": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     },
     "credentials": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     }
   },
   "required": ["email", "username", "firstName", "lastName", "credentials"]
