@@ -9,19 +9,17 @@
     },
     "firstName": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "pattern": "^[a-zA-Z]+$"
     },
     "lastName": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "pattern": "^[a-zA-Z]+$"
     },
     "username": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     },
     "credentials": {
-      "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$"
+      "type": "string"
     }
   },
   "required": ["email", "username", "firstName", "lastName", "credentials"]
