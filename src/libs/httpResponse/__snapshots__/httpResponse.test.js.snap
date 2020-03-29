@@ -2,7 +2,13 @@
 
 exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND all arguments are passed through SHOULD return the correct payload 1`] = `
 Object {
-  "message": "An unknown error occured",
+  "message": Object {
+    "message": "An unknown error occured",
+    "status": Object {
+      "code": 403,
+      "message": "forbidden",
+    },
+  },
   "statusCode": Object {
     "code": 403,
     "message": "forbidden",
@@ -12,14 +18,22 @@ Object {
 
 exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND no arguments are passed through SHOULD return the correct payload 1`] = `
 Object {
-  "message": "An unknown error occured",
+  "message": Object {
+    "message": "An unknown error occured",
+    "status": 500,
+  },
   "statusCode": 500,
 }
 `;
 
 exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND no message is passed through SHOULD return the correct payload 1`] = `
 Object {
-  "message": "An unknown error occured",
+  "message": Object {
+    "message": "An unknown error occured",
+    "status": Object {
+      "code": 403,
+    },
+  },
   "statusCode": Object {
     "code": 403,
   },

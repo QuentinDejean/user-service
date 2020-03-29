@@ -15,8 +15,10 @@ const create = (userDataSource, userFactory, response, logger) => async (
     logger.log(`Successfully created user, ${user.id}`)
 
     return response.success({
-      message: 'User created sucessfully',
-      userId: user.id,
+      data: {
+        message: 'User created sucessfully',
+        userId: user.id,
+      },
     })
   } catch (error) {
     logger.error('An error occured while creating user', error)

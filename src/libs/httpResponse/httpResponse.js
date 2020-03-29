@@ -5,7 +5,10 @@ const httpResponse = {
   }),
   error: (code, message) => ({
     statusCode: code || 500,
-    message: message || 'An unknown error occured',
+    message: {
+      status: code || 500,
+      message: message || 'An unknown error occured',
+    },
   }),
 }
 
