@@ -1,5 +1,9 @@
 service: user
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -9,18 +13,14 @@ provider:
   environment:
     USER_TABLE: ${self:service}-${self:provider.stage}
 
-plugins:
-  - serverless-dynamodb-local
-  - serverless-offline
-
-iamRoleStatements:
-  - Effect: Allow
-    Action:
-      - dynamodb:Query
-      - dynamodb:Scan
-      - dynamodb:GetItem
-      - dynamodb:PutItem
-    Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}'
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}'
 
 custom:
   dynamodb:
