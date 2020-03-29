@@ -14,7 +14,7 @@ const user = (environment) => ({
         Item: data,
       }
 
-      return dynamoDb
+      await dynamoDb
         .put(userInfo)
         .promise()
         .then(() => data)

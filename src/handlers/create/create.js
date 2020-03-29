@@ -1,11 +1,7 @@
 const datasource = require('../../datasources/user')
 const factory = require('./factory')
 
-const create = (userDataSource, userFactory) => async (
-  event,
-  context,
-  callback
-) => {
+const create = (userDataSource, userFactory) => async (event) => {
   const payload = JSON.parse(event.body)
 
   let response
@@ -29,9 +25,9 @@ const create = (userDataSource, userFactory) => async (
         message: 'An error occured while creating the user',
       }),
     }
-  } finally {
-    callback(null, response)
   }
+
+  return response
 }
 
 module.exports.handler = create(datasource, factory)
