@@ -9,14 +9,23 @@ provider:
   environment:
     USER_TABLE: ${self:service}-${self:provider.stage}
 
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}'
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+    Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}'
+
+custom:
+  dynamodb:
+    stages:
+      - ${self:provider.stage}
 
 functions:
   createUser:
