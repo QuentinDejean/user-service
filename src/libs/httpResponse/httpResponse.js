@@ -1,13 +1,13 @@
 const httpResponse = {
   success: (payload) => ({
     statusCode: 200,
-    data: JSON.stringify(payload),
+    body: JSON.stringify(payload),
   }),
   error: (code, message) => ({
     statusCode: code || 500,
-    errors: {
+    message: {
       status: code || 500,
-      detail: message || 'An unknown error occured',
+      message: message || 'An unknown error occured',
     },
   }),
 }

@@ -25,8 +25,10 @@ describe('GIVEN the create handler', () => {
       expect(factory).toHaveBeenCalledWith(user)
       expect(userDatasource.create).toHaveBeenCalledWith(createdUser)
       expect(httpResponse.success).toHaveBeenCalledWith({
-        message: 'User created sucessfully',
-        userId,
+        data: {
+          message: 'User created sucessfully',
+          userId,
+        },
       })
     })
 
