@@ -8,10 +8,12 @@
       "format": "email"
     },
     "firstName": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[a-zA-Z]+$"
     },
     "lastName": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[a-zA-Z]+$"
     },
     "username": {
       "type": "string"
