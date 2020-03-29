@@ -30,8 +30,8 @@ const create = (userDataSource, userFactory) => async (
       }),
     }
   } finally {
+    callback(null, response)
   }
-  callback(null, response)
 }
 
 module.exports.handler = create(datasource, factory)
