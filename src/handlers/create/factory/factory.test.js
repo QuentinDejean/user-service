@@ -3,7 +3,7 @@ const { createUser } = require('./factory')
 describe('GIVEN the user factory', () => {
   const userid = 'user-id'
   const uuid = {
-    v1: jest.fn().mockReturnValue(userid),
+    v4: jest.fn().mockReturnValue(userid),
   }
 
   const hash = 'hash'
@@ -28,7 +28,7 @@ describe('GIVEN the user factory', () => {
     })
 
     it('SHOULD call uuid', () => {
-      expect(uuid.v1).toHaveBeenCalled()
+      expect(uuid.v4).toHaveBeenCalled()
     })
 
     it('SHOULD call passwordHash with the right argument', () => {

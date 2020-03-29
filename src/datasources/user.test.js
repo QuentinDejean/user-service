@@ -1,9 +1,9 @@
 const { user: userDatasource } = require('./user')
+// eslint-disable-next-line
+const AWSMock = require('aws-sdk-mock')
 
 describe('GIVEN the user datasource', () => {
-  const dynamoDB = {
-    put: jest.fn(),
-  }
+  const putItem = jest.fn().mockResolvedValue()
 
   const environment = {
     userTable: 'SOME_USER_TABLE',
@@ -18,23 +18,26 @@ describe('GIVEN the user datasource', () => {
     credentials: 'hashed-credentials',
   }
 
-  describe('WHEN the create method is executed', () => {
-    it('SHOULD call dynamoDB with the right argument', async () => {
-      const result = {
-        TableName: environment.userTable,
-        Item: user,
-      }
+  const datasource = userDatasource(environment)
 
-      const datasource = userDatasource(environment, dynamoDB)
+  describe('WHEN the create method is executed', () => {
+    beforeAll(() => {
+      AWSMock.mock('DynamoDB.DocumentClient', 'put', putItem)
+    })
+
+    afterAll(() => {
+      AWSMock.restore('DynamoDB', 'put')
+    })
+
+    it('SHOULD call dynamoDB with the right argument', async () => {
       await datasource.create(user)
 
-      expect(dynamoDB.put).toHaveBeenCalledWith(result)
+      expect(putItem).toHaveBeenCalled()
     })
 
     describe('AND the method unexpectedly fails', () => {
       it('SHOULD throw an error', async () => {
-        dynamoDB.put = jest.fn().mockRejectedValue('An error occured')
-        const datasource = userDatasource(environment, dynamoDB)
+        const datasource = userDatasource(environment)
 
         try {
           await datasource.create(user)

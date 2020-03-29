@@ -8,7 +8,7 @@ const createUser = (generateId, hash) => async ({
   username,
   credentials,
 }) => ({
-  id: generateId.v1(),
+  id: generateId.v4(),
   email,
   firstName,
   lastName,
