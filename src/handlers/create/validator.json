@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User Create API",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "firstName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]+$"
+    },
+    "lastName": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]+$"
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]+$"
+    },
+    "credentials": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9]+$"
+    }
+  },
+  "required": ["email", "username", "firstName", "lastName", "credentials"]
+}

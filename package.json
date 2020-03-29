@@ -5,7 +5,9 @@
   "main": "handler.js",
   "scripts": {
     "lint": "eslint ./src/**/*.js",
-    "lint:fix": "npm run lint --fix"
+    "lint:fix": "npm run lint --fix",
+    "test": "jest --coverage=true",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -27,16 +29,24 @@
   },
   "homepage": "https://github.com/QuentinDejean/user-service#readme",
   "devDependencies": {
+    "aws-sdk-mock": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
+    "jest": "^25.2.3",
     "prettier": "^2.0.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run lint && npm run test"
     }
+  },
+  "dependencies": {
+    "aws-sdk": "^2.648.0",
+    "bluebird": "^3.7.2",
+    "password-hash": "^1.2.2",
+    "uuid": "^7.0.2"
   }
 }

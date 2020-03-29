@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND all arguments are passed through SHOULD return the correct payload 1`] = `
+Object {
+  "message": "An unknown error occured",
+  "statusCode": Object {
+    "code": 403,
+    "message": "forbidden",
+  },
+}
+`;
+
+exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND no arguments are passed through SHOULD return the correct payload 1`] = `
+Object {
+  "message": "An unknown error occured",
+  "statusCode": 500,
+}
+`;
+
+exports[`GIVEN httpResponse AND the success method WHEN the method is executed AND no message is passed through SHOULD return the correct payload 1`] = `
+Object {
+  "message": "An unknown error occured",
+  "statusCode": Object {
+    "code": 403,
+  },
+}
+`;
+
+exports[`GIVEN httpResponse AND the success method WHEN the method is executed SHOULD return the correct payload 1`] = `
+Object {
+  "body": "{\\"message\\":\\"success\\"}",
+  "statusCode": 200,
+}
+`;
