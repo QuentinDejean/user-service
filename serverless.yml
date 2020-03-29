@@ -1,5 +1,9 @@
 service: user
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -17,6 +21,11 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
       Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.USER_TABLE}'
+
+custom:
+  dynamodb:
+    stages:
+      - ${self:provider.stage}
 
 functions:
   createUser:
