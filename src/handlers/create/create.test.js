@@ -3,6 +3,7 @@ const datasource = require('../../datasources/mock')
 const { factory, id: userId } = require('../../handlers/create/factory/mock')
 const user = require('./mock')
 const createUser = require('./create')
+const logger = require('../../libs/logger/mock')
 
 describe('GIVEN the create handler', () => {
   const event = {
@@ -12,7 +13,7 @@ describe('GIVEN the create handler', () => {
   describe('WHEN the method is fired', () => {
     it('SHOULD run all expected methods and return a successful payload', async () => {
       const userDatasource = datasource(jest.fn().mockResolvedValue())
-      const create = createUser(userDatasource, factory, httpResponse)
+      const create = createUser(userDatasource, factory, httpResponse, logger)
 
       const createdUser = {
         ...user,
@@ -36,7 +37,7 @@ describe('GIVEN the create handler', () => {
             .fn()
             .mockRejectedValue({ code: 500, message: 'An error occured' })
         )
-        const create = createUser(userDatasource, factory, httpResponse)
+        const create = createUser(userDatasource, factory, httpResponse, logger)
 
         await create(event)
         expect(httpResponse.error).toHaveBeenCalled()

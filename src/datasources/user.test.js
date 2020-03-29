@@ -1,4 +1,5 @@
 const { user: userDatasource } = require('./user')
+const logger = require('../libs/logger/mock')
 // eslint-disable-next-line
 const AWSMock = require('aws-sdk-mock')
 
@@ -7,7 +8,7 @@ describe('GIVEN the user datasource', () => {
     userTable: 'SOME_USER_TABLE',
   }
 
-  const datasource = userDatasource(environment)
+  const datasource = userDatasource(environment, logger)
 
   describe('WHEN the create method is executed', () => {
     const user = {
@@ -37,7 +38,7 @@ describe('GIVEN the user datasource', () => {
         const putItem = jest.fn().mockRejectedValue()
         AWSMock.mock('DynamoDB.DocumentClient', 'put', putItem)
 
-        const datasource = userDatasource(environment)
+        const datasource = userDatasource(environment, logger)
 
         try {
           await datasource.create(user)
