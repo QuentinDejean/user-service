@@ -14,7 +14,7 @@ const create = (userDataSource, userFactory, response) => async (event) => {
       userId: user.id,
     })
   } catch (error) {
-    return response.error(error.message, error.statusCode)
+    return response.error(error.code, error.message)
   }
 }
 

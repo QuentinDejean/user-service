@@ -30,6 +30,14 @@ functions:
           request:
             schema:
               application/json: ${file(src/handlers/create/validator.json)}
+  getUserList:
+    handler: src/handlers/list/list.handler
+    memorySize: 128
+    description: Get a user list
+    events:
+      - http:
+          path: user/list
+          method: get
 
 resources:
   Resources:
