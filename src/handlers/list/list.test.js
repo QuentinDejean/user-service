@@ -14,5 +14,19 @@ describe('GIVEN the list handler', () => {
       expect(userDatasource.list).toHaveBeenCalled()
       expect(httpResponse.success).toHaveBeenCalledWith({ data: userList })
     })
+
+    describe('AND an unexpected error occurs', () => {
+      it('SHOULD return an error', async () => {
+        const userDatasource = datasource(
+          jest.fn().mockRejectedValue('An error occured')
+        )
+        const list = getUserList(userDatasource, httpResponse)
+
+        await list()
+
+        expect(userDatasource.list).toHaveBeenCalled()
+        expect(httpResponse.error).toHaveBeenCalled()
+      })
+    })
   })
 })

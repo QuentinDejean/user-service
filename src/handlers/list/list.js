@@ -3,7 +3,6 @@ const httpResponse = require('../../libs/httpResponse/httpResponse')
 
 const list = (userDataSource, response) => async () => {
   try {
-    console.log(userDataSource.list)
     const users = await userDataSource.list()
 
     return response.success({ data: users })
